@@ -99,16 +99,18 @@ public class Validations {
         System.out.println("Tipo: "+getType());
         System.out.println("Color: "+getPieceColor());
     }
-    public void runProgram(){
+    public boolean runProgram(){
         if (!"Dato invalido".equals(getAlgorithm()) &&
                 !"Dato invalido".equals(getType()) &&
                 !"Dato invalido".equals(getPieceColor())) {
             if (!"Color de fichas no encontrado".equals(getPieceColor()) &&
                     !"Carácter no encontrado".equals(getType()) &&
                     !"Algoritmo no encontrado".equals(getAlgorithm())) {
-                runAlgorithm(getAlgorithm(), getType());
+                return true;
             }
+            return false;
         }
+        return false;
     }
     public void runAlgorithm(String algorithm, String typeList) {
         String[] intList = new String[]{"23", "56", "12", "78", "45", "9", "67", "34", "87", "3", "90", "16", "72", "8", "51", "29"};
