@@ -5,22 +5,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Clase principal que ejecuta el programa ingresar los valores separados por espacios.
- * Valores válidos:
- * a: b, i
- * t: c, i
- * o: b, n
- * Ej: a=b c=i o=n
+ * Clase principal que ejecuta el programa.
  */
 public class Main {
     public static void main(String[] args) {
         Validations validator = new Validations();
         validator.readArgs(args);
         validator.printValues();
-        if (validator.runProgram()){
+        if (validator.runProgram()) {
             runAlgorithm(validator.getAlgorithm(), validator.getType());
         }
     }
+
     public static void runAlgorithm(String algorithm, String typeList) {
         switch (algorithm) {
             case "Bubble Sort":
@@ -38,20 +34,22 @@ public class Main {
                 System.out.println("Error");
         }
     }
+
     public static String[] listOrden(String type) {
         String[] array = new String[16];
         Set<String> numbersAdd = new HashSet<>();
         switch (type) {
             case "Carácter":
-                String[] arrayCharacter = new String[]{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+                String[] arrayCharacter = new String[]{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+                        "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
                 for (int i = 0; i < 16; i++) {
-                    int numero = (int) (Math.random() * 26);
+                    int number = (int) (Math.random() * 26);
                     if (i != 0) {
-                        while (Arrays.asList(array).contains(arrayCharacter[numero])) {
-                            numero = (int) (Math.random() * 26);
+                        while (Arrays.asList(array).contains(arrayCharacter[number])) {
+                            number = (int) (Math.random() * 26);
                         }
                     }
-                    array[i] = arrayCharacter[numero];
+                    array[i] = arrayCharacter[number];
                 }
                 return array;
             case "Entero":
@@ -69,5 +67,4 @@ public class Main {
         }
         return null;
     }
-
 }

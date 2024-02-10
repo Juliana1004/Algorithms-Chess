@@ -5,19 +5,22 @@ package jala.university.academic;
  */
 public class BubbleSort implements IAlgorithm {
     private final String[] sortingList;
+
     public String[] getSortingList() {
         return sortingList;
     }
-    public BubbleSort(String[] list){
+
+    public BubbleSort(String[] list) {
         this.sortingList = list;
     }
+
     @Override
     public String[] sort(String[] listToSort) {
         boolean sorted;
-        do{
+        do {
             sorted = true;
             for (int i = 0; i < listToSort.length - 1; i++) {
-                if (listToSort[i].matches(".*\\d.*")){
+                if (listToSort[i].matches(".*\\d.*")) {
                     if (Integer.parseInt(listToSort[i]) > Integer.parseInt(listToSort[i + 1])) {
                         String valorTemp = listToSort[i];
                         listToSort[i] = listToSort[i + 1];
@@ -37,4 +40,3 @@ public class BubbleSort implements IAlgorithm {
         return listToSort;
     }
 }
-

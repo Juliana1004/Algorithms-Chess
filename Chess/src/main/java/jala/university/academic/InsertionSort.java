@@ -5,9 +5,11 @@ package jala.university.academic;
  */
 public class InsertionSort implements IAlgorithm {
     private final String[] sortingList;
+
     public InsertionSort(String[] list) {
         this.sortingList = list;
     }
+
     @Override
     public String[] sort(String[] listToSort) {
         for (int idx = 0; idx < listToSort.length - 1; idx++) {
@@ -29,8 +31,8 @@ public class InsertionSort implements IAlgorithm {
         }
         return listToSort;
     }
+
     public String[] getSortingList() {
         return sortingList;
     }
 }
-
