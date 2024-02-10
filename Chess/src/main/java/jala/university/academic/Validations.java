@@ -1,6 +1,5 @@
 package jala.university.academic;
 
-import java.util.Arrays;
 /**
  * Clase que realiza validaciones y ejecuta el programa.
  */
@@ -103,32 +102,10 @@ public class Validations {
         if (!"Dato invalido".equals(getAlgorithm()) &&
                 !"Dato invalido".equals(getType()) &&
                 !"Dato invalido".equals(getPieceColor())) {
-            if (!"Color de fichas no encontrado".equals(getPieceColor()) &&
+            return !"Color de fichas no encontrado".equals(getPieceColor()) &&
                     !"Carácter no encontrado".equals(getType()) &&
-                    !"Algoritmo no encontrado".equals(getAlgorithm())) {
-                return true;
-            }
-            return false;
+                    !"Algoritmo no encontrado".equals(getAlgorithm());
         }
         return false;
-    }
-    public void runAlgorithm(String algorithm, String typeList) {
-        String[] intList = new String[]{"23", "56", "12", "78", "45", "9", "67", "34", "87", "3", "90", "16", "72", "8", "51", "29"};
-        String[] stringList = new String[]{"A", "Z", "L", "Q", "W", "R", "T", "Y", "H", "F", "G", "B", "N", "M", "J", "K"};
-        switch (algorithm) {
-            case "Bubble Sort":
-                BubbleSort bubble = new BubbleSort(typeList.equals("Carácter") ? stringList : intList);
-                System.out.println("Valores: " + Arrays.toString(bubble.getSortingList()));
-                String sortedValues = Arrays.toString(bubble.sort(bubble.getSortingList()));
-                System.out.println("Organizados: " + sortedValues);
-                break;
-            case "Insertion Sort":
-                InsertionSort sort = new InsertionSort(typeList.equals("Entero") ? intList : stringList);
-                System.out.println("Valores: " + Arrays.toString(sort.getSortingList()));
-                System.out.println("Organizados: " + Arrays.toString(sort.sort(sort.getSortingList())));
-                break;
-            default:
-                System.out.println("Error");
-        }
     }
 }

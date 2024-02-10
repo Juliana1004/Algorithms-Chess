@@ -2,11 +2,15 @@ package jala.university.academic;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 
 /**
- * Clase principal que ejecuta el programa.
+ * Clase principal que ejecuta el programa ingresar los valores separados por espacios.
+ * Valores válidos:
+ * a: b, i
+ * t: c, i
+ * o: b, n
+ * Ej: a=b c=i o=n
  */
 public class Main {
     public static void main(String[] args) {
