@@ -1,17 +1,17 @@
 package jala.university.academic;
 
+
 /**
  * Clase que implementa el algoritmo de ordenamiento de inserción.
  */
-public class InsertionSort implements IAlgorithm {
-    private final String[] sortingList;
+public class InsertionSort extends Algorithm {
 
     public InsertionSort(String[] list) {
-        this.sortingList = list;
+        super(list);
     }
 
-    @Override
-    public String[] sort(String[] listToSort) {
+    public String[] sort(String[] listToSort, int speed) {
+        long startTime = System.currentTimeMillis();
         for (int idx = 0; idx < listToSort.length - 1; idx++) {
             int min = idx;
             for (int scan = idx + 1; scan < listToSort.length; scan++) {
@@ -28,11 +28,10 @@ public class InsertionSort implements IAlgorithm {
             String temp = listToSort[idx];
             listToSort[idx] = listToSort[min];
             listToSort[min] = temp;
+            sleep(speed);
         }
+        setTime(System.currentTimeMillis() - startTime);
         return listToSort;
     }
 
-    public String[] getSortingList() {
-        return sortingList;
-    }
 }

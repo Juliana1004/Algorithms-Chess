@@ -1,91 +1,76 @@
 package jala.university.academic;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Random;
+
 /**
  * Clase que realiza validaciones y ejecuta el programa.
  */
 public class Validations {
-    private String algorithm;
-    private String type;
-    private String pieceColor;
-
-    public String getAlgorithm() {
-        return algorithm;
-    }
-
-    public void setAlgorithm(String algorithm) {
-        this.algorithm = algorithm;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getPieceColor() {
-        return pieceColor;
-    }
-
-    public void setPieceColor(String pieceColor) {
-        this.pieceColor = pieceColor;
-    }
-
-    public void readArgs(String[] args) {
-        for (String arg : args) {
-            String[] values = arg.split(" ");
-            for (String value : values) {
-                if (value.contains("a")) {
-                    setAlgorithm(value.split("=").length != 2 ? "x" : value.split("=")[1]);
-                } else if (value.contains("t")) {
-                    setType(value.split("=").length != 2 ? "x" : value.split("=")[1]);
-                } else if (value.contains("o")) {
-                    setPieceColor(pieceColor = value.split("=").length != 2 ? "x" : value.split("=")[1]);
-                }
-            }
-        }
-    }
+    private final Map<String, String> values;
 
     public Validations() {
+        values = new LinkedHashMap<>();
     }
 
     public static String validatorAlgorithm(String algorithm) {
+        Random rand = new Random();
+        String[] random = {"Bubble Sort", "Insertion Sort", "Quick Sort"};
         if (algorithm != null) {
-            if (algorithm.matches(".*\\d.*")) {
-                algorithm = "Dato invalido";
-            } else {
-                algorithm = algorithm.toUpperCase();
-                switch (algorithm) {
-                    case "B":
-                        algorithm = "Bubble Sort";
-                        break;
-                    case "I":
-                        algorithm = "Insertion Sort";
-                        break;
-                    default:
-                        algorithm = "Dato invalido";
-                        break;
-                }
+            algorithm = algorithm.toUpperCase();
+            switch (algorithm) {
+                case "B":
+                    algorithm = "Bubble Sort";
+                    break;
+                case "I":
+                    algorithm = "Insertion Sort";
+                    break;
+                case "Q":
+                    algorithm = "Quick Sort";
+                    break;
+                default:
+                    int number = rand.nextInt(0, 3);
+                    algorithm = random[number];
+                    break;
             }
         } else {
-            algorithm = "Algoritmo no encontrado";
+            int number = rand.nextInt(0, 3);
+            algorithm = random[number];
         }
         return algorithm;
     }
 
-    public static String validatorType(String chartType) {
-        if (chartType != null) {
-            chartType = chartType.toUpperCase();
-            if (chartType.equals("C") || chartType.equals("I")) {
-                chartType = chartType.equals("C") ? "Carácter" : "Entero";
-            } else {
-                chartType = "Dato invalido";
+    public static String validatorFicha(String ficha) {
+        if (ficha != null) {
+            try {
+                if (Integer.parseInt(ficha) > 16 || Integer.parseInt(ficha) < 1) {
+                    return "Dato invalido";
+                } else {
+                    return ficha;
+                }
+            } catch (Exception e) {
+                return "Dato invalido";
             }
         } else {
-            chartType = "Carácter no encontrado";
+            ficha = "Ficha no encontrado";
         }
-        return chartType;
+        return ficha;
+    }
+
+    public static String validatorSpeed(String speed) {
+        if (speed != null) {
+            try {
+                if (Integer.parseInt(speed) > 1000 || Integer.parseInt(speed) < 100) {
+                    speed = "Dato invalido";
+                }
+            } catch (Exception e) {
+                speed = "Dato invalido";
+            }
+        } else {
+            speed = "Speed no encontrado";
+        }
+        return speed;
     }
 
     public static String validatorColor(String color) {
@@ -102,22 +87,57 @@ public class Validations {
         return color;
     }
 
+    public static String validatorType(String chartType) {
+        if (chartType != null) {
+            chartType = chartType.toUpperCase();
+            if (chartType.equals("C") || chartType.equals("N")) {
+                chartType = chartType.equals("C") ? "Carácter" : "Entero";
+            } else {
+                chartType = "Dato invalido";
+            }
+        } else {
+            chartType = "Carácter no encontrado";
+        }
+        return chartType;
+    }
+
+    public Map<String, String> getValues() {
+        return values;
+    }
+
+    public void readArgs(String[] args) {
+        for (String arg : args) {
+            String[] values = arg.split(" ");
+            for (String value : values) {
+                if (value.contains("a")) {
+                    this.values.put("a", value.split("=").length != 2 ? "x" : value.split("=")[1]);
+                } else if (value.contains("t")) {
+                    this.values.put("t", value.split("=").length != 2 ? "x" : value.split("=")[1]);
+                } else if (value.contains("o")) {
+                    this.values.put("o", value.split("=").length != 2 ? "x" : value.split("=")[1]);
+                } else if (value.contains("r")) {
+                    this.values.put("r", value.split("=").length != 2 ? "x" : value.split("=")[1]);
+                } else if (value.contains("s")) {
+                    this.values.put("s", value.split("=").length != 2 ? "x" : value.split("=")[1]);
+                }
+            }
+        }
+    }
+
     public void printValues() {
-        setAlgorithm(validatorAlgorithm(algorithm));
-        setType(validatorType(type));
-        setPieceColor(validatorColor(pieceColor));
-        System.out.println("Algoritmo: " + getAlgorithm());
-        System.out.println("Tipo: " + getType());
-        System.out.println("Color: " + getPieceColor());
+        values.put("a", validatorAlgorithm(values.get("a")));
+        values.put("t", validatorType(values.get("t")));
+        values.put("o", validatorColor(values.get("o")));
+        values.put("r", validatorFicha(values.get("r")));
+        values.put("s", validatorSpeed(values.get("s")));
+        System.out.println("Algoritmo: " + values.get("a"));
+        System.out.println("Tipo: " + values.get("t"));
+        System.out.println("Color: " + values.get("o"));
     }
 
     public boolean runProgram() {
-        if (!"Dato invalido".equals(getAlgorithm()) &&
-                !"Dato invalido".equals(getType()) &&
-                !"Dato invalido".equals(getPieceColor())) {
-            return !"Color de fichas no encontrado".equals(getPieceColor()) &&
-                    !"Carácter no encontrado".equals(getType()) &&
-                    !"Algoritmo no encontrado".equals(getAlgorithm());
+        if (!"Dato invalido".equals(values.get("t")) && !"Dato invalido".equals(values.get("o")) && !"Dato invalido".equals(values.get("r")) && !"Dato invalido".equals(values.get("s"))) {
+            return !"Color de fichas no encontrado".contains(values.get("o")) && !"Carácter no encontrado".equals(values.get("t")) && !"Ficha no encontrado".equals(values.get("r")) && !"Speed no encontrado".equals(values.get("s"));
         }
         return false;
     }

@@ -3,19 +3,14 @@ package jala.university.academic;
 /**
  * Clase que implementa el algoritmo de ordenamiento de burbuja.
  */
-public class BubbleSort implements IAlgorithm {
-    private final String[] sortingList;
-
-    public String[] getSortingList() {
-        return sortingList;
-    }
+public class BubbleSort extends Algorithm {
 
     public BubbleSort(String[] list) {
-        this.sortingList = list;
+        super(list);
     }
 
-    @Override
-    public String[] sort(String[] listToSort) {
+    public String[] sort(String[] listToSort, int Speed) {
+        long startTime = System.currentTimeMillis();
         boolean sorted;
         do {
             sorted = true;
@@ -35,8 +30,10 @@ public class BubbleSort implements IAlgorithm {
                         sorted = false;
                     }
                 }
+                sleep(Speed);
             }
         } while (!sorted);
+        setTime(System.currentTimeMillis() - startTime);
         return listToSort;
     }
 }
