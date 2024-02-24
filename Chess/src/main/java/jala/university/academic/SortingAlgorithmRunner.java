@@ -1,6 +1,9 @@
 package jala.university.academic;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class SortingAlgorithmRunner {
 
@@ -34,20 +37,20 @@ public class SortingAlgorithmRunner {
         String[] array = new String[fichas];
         String[] arrayCharacter = new String[]{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"};
         String[] arrayInteger = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"};
-        String[] arrayTomar = new String[fichas];
+        String[] arrayToUse = new String[fichas];
         switch (type) {
-            case "Carácter" -> System.arraycopy(arrayCharacter, 0, arrayTomar, 0, fichas);
-            case "Entero" -> System.arraycopy(arrayInteger, 0, arrayTomar, 0, fichas);
+            case "Carácter":
+                arrayToUse = Arrays.copyOf(arrayCharacter, fichas);
+                break;
+            case "Entero":
+                arrayToUse = Arrays.copyOf(arrayInteger, fichas);
+                break;
         }
-        for (int i = 0; i < fichas; i++) {
-            int number = (int) (Math.random() * fichas);
-            if (i != 0) {
-                while (Arrays.asList(array).contains(arrayTomar[number])) {
-                    number = (int) (Math.random() * fichas);
-                }
-            }
-            array[i] = arrayInteger[number];
-        }
+
+        List<String> listToUse = new ArrayList<>(Arrays.asList(arrayToUse));
+        Collections.shuffle(listToUse);
+        listToUse.toArray(array);
+
         return array;
     }
 }

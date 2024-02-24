@@ -1,9 +1,21 @@
 package jala.university.academic;
 
-public class QuickSort extends Algorithm {
+import static jala.university.academic.Utilizes.*;
+
+public class QuickSort implements IAlgorithm {
+    private final String[] sortingList;
+    private long time;
 
     public QuickSort(String[] list) {
-        super(list);
+        this.sortingList = list;
+    }
+
+    public String[] getSortingList() {
+        return sortingList;
+    }
+
+    public long getTime() {
+        return time;
     }
 
     private void quickSort(String[] array, int start, int end, int speed) {
@@ -51,10 +63,11 @@ public class QuickSort extends Algorithm {
         }
     }
 
+    @Override
     public String[] sort(String[] values, int speed) {
-        long startTime = System.currentTimeMillis();
+        long startTime = getCurrentTimeMillis();
         quickSort(values, 0, getSortingList().length - 1, speed);
-        setTime(System.currentTimeMillis() - startTime);
+        time = calculateElapsedTime(startTime);
         return getSortingList();
     }
 
