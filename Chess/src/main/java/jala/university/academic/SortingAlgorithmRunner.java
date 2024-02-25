@@ -1,6 +1,9 @@
 package jala.university.academic;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Clase que implementa la creación del array e impresión de datos según los parámetros.
@@ -40,15 +43,51 @@ public class SortingAlgorithmRunner {
             case "Carácter" -> arrayToUse = arrayCharacter;
             case "Entero" -> arrayToUse = arrayInteger;
         }
-        for (int idxArray = 0; idxArray < pieces; idxArray++) {
-            int pieceRandom = (int) (Math.random() * 16);
-            if (idxArray != 0) {
-                while (Arrays.asList(array).contains(arrayToUse[pieceRandom])) {
-                    pieceRandom = (int) (Math.random() * 16);
+        switch (pieces) {
+            case 1:
+                array = new String[]{arrayToUse[0]};
+                break;
+            case 2:
+                array = new String[]{arrayToUse[0], arrayToUse[1]};
+                break;
+            case 4:
+                array = new String[]{arrayToUse[0], arrayToUse[1], arrayToUse[4], arrayToUse[5]};
+                break;
+            case 6:
+                int index = 0;
+                for (int indexPiece = 0; indexPiece < arrayToUse.length; indexPiece++) {
+                    if (indexPiece != 3 && indexPiece != 2 && indexPiece < 10) {
+                        if (index < array.length) {
+                            array[index] = arrayToUse[indexPiece];
+                            index += 1;
+                        } else {
+                            break;
+                        }
+                    }
                 }
-            }
-            array[idxArray] = arrayToUse[pieceRandom];
+                break;
+            case 8:
+                int index2 = 0;
+                for (int indexPiece = 8; indexPiece < arrayToUse.length; indexPiece++) {
+                    array[index2] = arrayToUse[indexPiece];
+                    index2 += 1;
+                }
+                break;
+            default:
+                for (int idxArray = 0; idxArray < pieces; idxArray++) {
+                    int pieceRandom = (int) (Math.random() * 16);
+                    if (idxArray != 0) {
+                        while (Arrays.asList(array).contains(arrayToUse[pieceRandom])) {
+                            pieceRandom = (int) (Math.random() * 16);
+                        }
+                    }
+                    array[idxArray] = arrayToUse[pieceRandom];
+                }
+                break;
         }
+        List<String> listToUse = new ArrayList<>(Arrays.asList(array));
+        Collections.shuffle(listToUse);
+        listToUse.toArray(array);
         return array;
     }
 }
