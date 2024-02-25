@@ -1,5 +1,8 @@
 package jala.university.academic;
 
+/**
+ * Clase que implementa los métodos de dormir y cálculo del tiempo.
+ */
 public class Utilizes {
     public static void sleep(int milliseconds) {
         try {

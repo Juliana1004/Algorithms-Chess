@@ -1,6 +1,5 @@
 package jala.university.academic;
 
-
 import static jala.university.academic.Utilizes.*;
 
 /**

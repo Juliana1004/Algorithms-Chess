@@ -2,6 +2,10 @@ package jala.university.academic;
 
 import static jala.university.academic.Utilizes.*;
 
+/**
+ * Clase que implementa el algoritmo de ordenamiento de quick.
+ */
+
 public class QuickSort implements IAlgorithm {
     private final String[] sortingList;
     private long time;
@@ -70,5 +74,4 @@ public class QuickSort implements IAlgorithm {
         time = calculateElapsedTime(startTime);
         return getSortingList();
     }
-
 }

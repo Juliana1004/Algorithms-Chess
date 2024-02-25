@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Clase que implementa la creación del array e impresión de datos según los parámetros.
+ */
 public class SortingAlgorithmRunner {
 
     public void runAlgorithm(String algorithm, String typeList, String fichas, String speed) {
@@ -28,8 +31,6 @@ public class SortingAlgorithmRunner {
                 System.out.println("Organizados: " + Arrays.toString(quick.sort(quick.getSortingList(), Integer.parseInt(speed))));
                 System.out.println("Tiempo total: " + quick.getTime() + " ms");
                 break;
-            default:
-                System.out.println("Error");
         }
     }
 
@@ -50,7 +51,6 @@ public class SortingAlgorithmRunner {
         List<String> listToUse = new ArrayList<>(Arrays.asList(arrayToUse));
         Collections.shuffle(listToUse);
         listToUse.toArray(array);
-
         return array;
     }
 }
