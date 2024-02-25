@@ -19,23 +19,22 @@ public class BubbleSort implements IAlgorithm {
         boolean sorted;
         do {
             sorted = true;
-            for (int i = 0; i < listToSort.length - 1; i++) {
-                if (listToSort[i].matches(".*\\d.*")) {
-                    if (Integer.parseInt(listToSort[i]) > Integer.parseInt(listToSort[i + 1])) {
-                        String valorTemp = listToSort[i];
-                        listToSort[i] = listToSort[i + 1];
-                        listToSort[i + 1] = valorTemp;
+            for (int idxArray = 0; idxArray < listToSort.length - 1; idxArray++) {
+                if (listToSort[idxArray].matches(".*\\d.*")) {
+                    if (Integer.parseInt(listToSort[idxArray]) > Integer.parseInt(listToSort[idxArray + 1])) {
+                        String valorTemp = listToSort[idxArray];
+                        listToSort[idxArray] = listToSort[idxArray + 1];
+                        listToSort[idxArray + 1] = valorTemp;
                         sorted = false;
                     }
                 } else {
-                    if (listToSort[i].charAt(0) > listToSort[i + 1].charAt(0)) {
-                        String valorTemp = listToSort[i];
-                        listToSort[i] = listToSort[i + 1];
-                        listToSort[i + 1] = valorTemp;
+                    if (listToSort[idxArray].charAt(0) > listToSort[idxArray + 1].charAt(0)) {
+                        String valorTemp = listToSort[idxArray];
+                        listToSort[idxArray] = listToSort[idxArray + 1];
+                        listToSort[idxArray + 1] = valorTemp;
                         sorted = false;
                     }
                 }
-
                 sleep(Speed);
             }
         } while (!sorted);
