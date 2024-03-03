@@ -1,4 +1,5 @@
 package jala.university.academic;
+import jala.university.academic.algorithms.QuickSort;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 public class QuickSortTest {

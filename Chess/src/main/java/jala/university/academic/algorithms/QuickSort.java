@@ -1,36 +1,33 @@
-package jala.university.academic;
+package jala.university.academic.algorithms;
 
-import static jala.university.academic.Utilizes.*;
+import static jala.university.academic.utils.Utilizes.*;
 
 /**
  * Clase que implementa el algoritmo de ordenamiento de quick.
  */
 
 public class QuickSort implements IAlgorithm {
+    public int num = 0;
     private final String[] sortingList;
     private long time;
-
     public QuickSort(String[] list) {
         this.sortingList = list;
     }
-
     public String[] getSortingList() {
         return sortingList;
     }
-
     public long getTime() {
         return time;
     }
-
-    private void quickSort(String[] array, int start, int end, int speed) {
+    private void quickSort(String[] array, int start, int end,int speed) {
+        num+=1;
+        sleep(speed);
         if (start < end) {
             int partitionIndex = partition(array, start, end);
-            quickSort(array, start, partitionIndex - 1, speed);
-            quickSort(array, partitionIndex + 1, end, speed);
-            sleep(speed);
+            quickSort(array, start, partitionIndex - 1,speed);
+            quickSort(array, partitionIndex + 1, end,speed);
         }
     }
-
     private int partition(String[] array, int start, int end) {
         String pivot = array[end];
         int idxStart = start - 1;
@@ -43,7 +40,6 @@ public class QuickSort implements IAlgorithm {
         swapElements(array, idxStart + 1, end);
         return idxStart + 1;
     }
-
     private int compareValues(String a, String b) {
         if (isNumericValue(a) && isNumericValue(b)) {
             return Integer.compare(Integer.parseInt(a), Integer.parseInt(b));
@@ -51,13 +47,11 @@ public class QuickSort implements IAlgorithm {
             return a.compareTo(b);
         }
     }
-
     private void swapElements(String[] array, int min, int high) {
         String temp = array[min];
         array[min] = array[high];
         array[high] = temp;
     }
-
     private boolean isNumericValue(String str) {
         try {
             Integer.parseInt(str);
@@ -66,12 +60,10 @@ public class QuickSort implements IAlgorithm {
             return false;
         }
     }
-
     @Override
     public String[] sort(String[] values, int speed) {
-        long startTime = getCurrentTimeMillis();
-        quickSort(values, 0, getSortingList().length - 1, speed);
-        time = calculateElapsedTime(startTime);
+        quickSort(values, 0, getSortingList().length - 1,speed);
+        time = calculateElapsedTime(num,speed);
         return getSortingList();
     }
 }

@@ -1,4 +1,4 @@
-package jala.university.academic;
+package jala.university.academic.utils;
 
 /**
  * Clase que implementa los métodos de dormir y cálculo del tiempo.
@@ -11,12 +11,7 @@ public class Utilizes {
             System.out.println("error");
         }
     }
-
-    public static long getCurrentTimeMillis() {
-        return System.currentTimeMillis();
-    }
-
-    public static long calculateElapsedTime(long startTime) {
-        return System.currentTimeMillis() - startTime;
+    public static long calculateElapsedTime(int startTime, long speed) {
+        return startTime * speed;
     }
 }
