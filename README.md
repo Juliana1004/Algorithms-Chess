@@ -13,6 +13,7 @@ Valores válidos:
 * t: c(Carácter) o n(Entero)
 * o: B(Black) o W(White)
 * r: 1 || 2 || 4 || 6 || 8 || 10 || 16
+* in: r
 * s: 100<=s>=1000
 
 Ej: a=i t=n o=b r=8 s=140
