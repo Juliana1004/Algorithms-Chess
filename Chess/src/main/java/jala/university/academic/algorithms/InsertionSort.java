@@ -7,7 +7,7 @@ import static jala.university.academic.utils.Utilizes.*;
  */
 public class InsertionSort implements IAlgorithm {
     private final String[] sortingList;
-    private long tim
+    private long time;
     public InsertionSort(String[] list) {
         this.sortingList = list;
     }
