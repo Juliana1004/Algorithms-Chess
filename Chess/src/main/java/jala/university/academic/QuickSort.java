@@ -2,6 +2,10 @@ package jala.university.academic;
 
 import static jala.university.academic.Utilizes.*;
 
+/**
+ * Clase que implementa el algoritmo de ordenamiento de quick.
+ */
+
 public class QuickSort implements IAlgorithm {
     private final String[] sortingList;
     private long time;
@@ -29,15 +33,15 @@ public class QuickSort implements IAlgorithm {
 
     private int partition(String[] array, int start, int end) {
         String pivot = array[end];
-        int i = start - 1;
-        for (int j = start; j < end; j++) {
-            if (compareValues(array[j], pivot) <= 0) {
-                i++;
-                swapElements(array, i, j);
+        int idxStart = start - 1;
+        for (int idxEnd = start; idxEnd < end; idxEnd++) {
+            if (compareValues(array[idxEnd], pivot) <= 0) {
+                idxStart++;
+                swapElements(array, idxStart, idxEnd);
             }
         }
-        swapElements(array, i + 1, end);
-        return i + 1;
+        swapElements(array, idxStart + 1, end);
+        return idxStart + 1;
     }
 
     private int compareValues(String a, String b) {
@@ -48,10 +52,10 @@ public class QuickSort implements IAlgorithm {
         }
     }
 
-    private void swapElements(String[] array, int i, int j) {
-        String temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+    private void swapElements(String[] array, int min, int high) {
+        String temp = array[min];
+        array[min] = array[high];
+        array[high] = temp;
     }
 
     private boolean isNumericValue(String str) {
@@ -70,5 +74,4 @@ public class QuickSort implements IAlgorithm {
         time = calculateElapsedTime(startTime);
         return getSortingList();
     }
-
 }

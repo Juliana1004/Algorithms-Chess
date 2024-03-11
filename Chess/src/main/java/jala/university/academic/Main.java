@@ -1,6 +1,5 @@
 package jala.university.academic;
 
-
 /**
  * Clase principal que ejecuta el programa.
  */
