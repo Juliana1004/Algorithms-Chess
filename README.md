@@ -23,12 +23,14 @@ Ej: a=i t=n o=b r=8 s=140
 * Main: Encargada de empezar la ejecución del programa de ordenamiento.
 * Validations: Encargada de validar los datos ingresados sean correctos.
 * Bubble Sort, Insertion Sort y Quick Sort: Implementan los algoritmos de ordenamiento.
+* AbstractAlgorihm: Encargada de hacer la herencia entre los algoritmos y lógica.
 * SortingAlgorithmRunner: Encargada de la ejecución e impresión de los algoritmos.
 * CrateArray: Encargada de la creación de los array.
+* BoardManager: Encargada de la lógica del tablero.
 
 ## Diagrama de Clases
 
-![Alt text](image.png)
+![DiagramClass](image.png)
 
 ## Requisitos
 
