@@ -1,20 +1,21 @@
-package jala.university.academic;
+package jala.university.chess;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import static jala.university.academic.utils.UtilsMessage.*;
 
-/**
- * Clase que realiza validaciones y ejecuta el programa.
- */
+import static jala.university.chess.UtilsMessage.*;
+
 public class ChessInputProcessor {
     private final Map<String, String> values;
+
     public ChessInputProcessor() {
         values = new LinkedHashMap<>();
     }
+
     public Map<String, String> getValues() {
         return values;
     }
+
     public void readArgs(String[] args) {
         for (String arg : args) {
             String[] values = arg.split(" ");
@@ -23,7 +24,7 @@ public class ChessInputProcessor {
                     this.values.put("a", value.split("=").length != 2 ? "x" : value.split("=")[1]);
                 } else if (value.contains("t")) {
                     this.values.put("t", value.split("=").length != 2 ? "x" : value.split("=")[1]);
-                }else if (value.contains("in")) {
+                } else if (value.contains("in")) {
                     this.values.put("in", value.split("=").length != 2 ? "x" : value.split("=")[1]);
                 } else if (value.contains("o")) {
                     this.values.put("o", value.split("=").length != 2 ? "x" : value.split("=")[1]);
@@ -35,6 +36,7 @@ public class ChessInputProcessor {
             }
         }
     }
+
     public String validatorAlgorithm(String algorithm) {
         if (algorithm != null) {
             algorithm = algorithm.toUpperCase();
@@ -49,18 +51,19 @@ public class ChessInputProcessor {
                     algorithm = quick;
                     break;
                 default:
-                    algorithm=invalid;
+                    algorithm = invalid;
                     break;
             }
         } else {
-            algorithm=missing;
+            algorithm = missing;
         }
         return algorithm;
     }
+
     public String validatorType(String chartType) {
         if (chartType != null) {
             chartType = chartType.toUpperCase();
-            if (chartType.equals("N")||chartType.equals("C")) {
+            if (chartType.equals("N") || chartType.equals("C")) {
                 chartType = chartType.equals("C") ? "Carácter" : "Entero";
             } else {
                 chartType = invalid;
@@ -70,6 +73,7 @@ public class ChessInputProcessor {
         }
         return chartType;
     }
+
     public String validatorColor(String color) {
         if (color != null) {
             color = color.toUpperCase();
@@ -83,6 +87,7 @@ public class ChessInputProcessor {
         }
         return color;
     }
+
     public String validatorR(String valueR) {
         if (valueR != null) {
             valueR = valueR.toUpperCase();
@@ -94,10 +99,11 @@ public class ChessInputProcessor {
         }
         return valueR;
     }
+
     public String validatorPiece(String pieces) {
         if (pieces != null) {
             int valuePiece = isNumber(pieces);
-            if (valuePiece!=16 && valuePiece!=1 &&valuePiece!=2 &&valuePiece!=4 &&valuePiece!=6 &&valuePiece!=8 &&valuePiece!=10) {
+            if (valuePiece != 16 && valuePiece != 1 && valuePiece != 2 && valuePiece != 4 && valuePiece != 6 && valuePiece != 8 && valuePiece != 10) {
                 return invalid;
             }
         } else {
@@ -105,6 +111,7 @@ public class ChessInputProcessor {
         }
         return pieces;
     }
+
     public String validatorSpeed(String speed) {
         if (speed != null) {
             int valueSpeed = isNumber(speed);
@@ -116,13 +123,15 @@ public class ChessInputProcessor {
         }
         return speed;
     }
-    public int isNumber(String number){
+
+    public int isNumber(String number) {
         try {
             return Integer.parseInt(number);
-        }catch (Exception e){
+        } catch (Exception e) {
             return 0;
         }
     }
+
     public void printValues() {
         values.put("a", validatorAlgorithm(values.get("a")));
         values.put("t", validatorType(values.get("t")));
@@ -133,11 +142,12 @@ public class ChessInputProcessor {
         System.out.println("Algoritmo: " + values.get("a"));
         System.out.println("Tipo: " + values.get("t"));
         System.out.println("Color: " + values.get("o"));
-        System.out.println("Fichas: "+values.get("r"));
-        System.out.println("Speed: "+values.get("s"));
+        System.out.println("Fichas: " + values.get("r"));
+        System.out.println("Velocidad: " + values.get("s"));
     }
-    public boolean runProgram() {
-        if (invalid.equals(values.get("in"))||missing.equals(values.get("in"))){
+
+    public boolean isAllDataValid() {
+        if (invalid.equals(values.get("in")) || missing.equals(values.get("in"))) {
             System.out.println(invalidR);
             return false;
         }
@@ -152,5 +162,12 @@ public class ChessInputProcessor {
             }
         }
         return true;
+    }
+
+    public void runProgram() {
+        if (isAllDataValid()) {
+            SortingAlgorithmRunner sorting = new SortingAlgorithmRunner();
+            sorting.runAlgorithm(getValues());
+        }
     }
 }

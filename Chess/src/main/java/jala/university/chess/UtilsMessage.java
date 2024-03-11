@@ -1,8 +1,5 @@
-package jala.university.academic.utils;
+package jala.university.chess;
 
-/**
- * Clase que contiene mensajes de error y repetidos varias veces en el programa.
- */
 public class UtilsMessage {
     public static final String invalid = "Dato invalido";
     public static final String missing = "No encontrado";
