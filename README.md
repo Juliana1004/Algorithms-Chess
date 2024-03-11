@@ -1,6 +1,6 @@
 # Project-chess
 
-Entrega de medio término del proyecto Chess hecho en Java, se hace el uso de 2 algoritmos de ordenamiento (Bubble Sort, Insertion Sort y Quick Sort) y arrays randoms con el fin de hacer una mejor prueba de los algoritmos.
+Proyecto Chess hecho en Java, se hace el uso de 3 algoritmos de ordenamiento (Bubble Sort, Insertion Sort y Quick Sort) y reglas especificas para implementar las piezas que se mostraran en el tablero.
 
 
 ## Como iniciar
