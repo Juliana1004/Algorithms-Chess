@@ -1,5 +1,6 @@
 package jala.university.academic;
 
+import jala.university.academic.algorithms.BubbleSort;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

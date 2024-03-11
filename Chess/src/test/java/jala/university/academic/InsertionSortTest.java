@@ -1,5 +1,6 @@
 package jala.university.academic;
 
+import jala.university.academic.algorithms.InsertionSort;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 public class InsertionSortTest {
